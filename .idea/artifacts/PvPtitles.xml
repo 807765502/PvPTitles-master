@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="PvPtitles">
+    <output-path>$PROJECT_DIR$/classes/artifacts/PvPtitles</output-path>
+    <root id="archive" name="PvPtitles.jar">
+      <element id="module-output" name="PvPTitles" />
+    </root>
+  </artifact>
+</component>

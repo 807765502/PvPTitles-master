@@ -54,48 +54,54 @@ public class HandlePlayerPrefix implements Listener {
 
         rank = this.ranks.GetRank(this.databaseHandler.PlayerFame());
 
-        if (rank.equals("英勇黄铜")) {
-            String a = String.format(ChatColor.BLACK + "[" + ChatColor.GOLD + rank + ChatColor.BLACK + "] ");
-            String format = event.getFormat();
-            event.setFormat(a + format);
-            player.setMaxHealth(heal);
+        for(String ranks : this.databaseHandler.HealthList().keySet()){
+            if(rank.equalsIgnoreCase(ranks)){
+                int addHealth = this.databaseHandler.HealthList().get(rank);
+                player.setMaxHealth(player.getMaxHealth() + addHealth);
+            }
         }
-        if (rank.equals("不屈白银")) {
-            String a = String.format(ChatColor.BLACK + "[" + ChatColor.GRAY + rank + ChatColor.BLACK + "] ");
-            String format = event.getFormat();
-            event.setFormat(a + format);
-            player.setMaxHealth(heal);
-        }
-        if (rank.equals("荣耀黄金")) {
-            String a = String.format(ChatColor.BLACK + "[" + ChatColor.YELLOW + rank + ChatColor.BLACK + "] ");
-            String format = event.getFormat();
-            event.setFormat(a + format);
-            player.setMaxHealth(heal + 2);
-        }
-        if (rank.equals("华贵白金")) {
-            String a = String.format(ChatColor.BLACK + "[" + ChatColor.AQUA + rank + ChatColor.BLACK + "] ");
-            String format = event.getFormat();
-            event.setFormat(a + format);
-            player.setMaxHealth(heal + 4);
-        }
-        if (rank.equals("璀璨钻石")) {
-            String a = String.format(ChatColor.BLACK + "[" + ChatColor.DARK_BLUE + rank + ChatColor.BLACK + "] ");
-            String format = event.getFormat();
-            event.setFormat(a + format);
-            player.setMaxHealth(heal + 6);
-        }
-        if (rank.equals("超凡大师")) {
-            String a = String.format(ChatColor.BLACK + "[" + "§b超§9凡§3大§e师" + ChatColor.BLACK + "] ");
-            String format = event.getFormat();
-            event.setFormat(a + format);
-            player.setMaxHealth(heal + 8);
-        }
-        if (rank.equals("最强王者")) {
-            String a = String.format(ChatColor.BLACK + "[" + "§4最§e强§d王§5者" + ChatColor.BLACK + "] ");
-            String format = event.getFormat();
-            event.setFormat(a + format);
-            player.setMaxHealth(heal + 10);
-        }
+//        if (rank.equals("英勇黄铜")) {
+//            String a = String.format(ChatColor.BLACK + "[" + ChatColor.GOLD + rank + ChatColor.BLACK + "] ");
+//            String format = event.getFormat();
+//            event.setFormat(a + format);
+//            player.setMaxHealth(heal);
+//        }
+//        if (rank.equals("不屈白银")) {
+//            String a = String.format(ChatColor.BLACK + "[" + ChatColor.GRAY + rank + ChatColor.BLACK + "] ");
+//            String format = event.getFormat();
+//            event.setFormat(a + format);
+//            player.setMaxHealth(heal);
+//        }
+//        if (rank.equals("荣耀黄金")) {
+//            String a = String.format(ChatColor.BLACK + "[" + ChatColor.YELLOW + rank + ChatColor.BLACK + "] ");
+//            String format = event.getFormat();
+//            event.setFormat(a + format);
+//            player.setMaxHealth(heal + 2);
+//        }
+//        if (rank.equals("华贵白金")) {
+//            String a = String.format(ChatColor.BLACK + "[" + ChatColor.AQUA + rank + ChatColor.BLACK + "] ");
+//            String format = event.getFormat();
+//            event.setFormat(a + format);
+//            player.setMaxHealth(heal + 4);
+//        }
+//        if (rank.equals("璀璨钻石")) {
+//            String a = String.format(ChatColor.BLACK + "[" + ChatColor.DARK_BLUE + rank + ChatColor.BLACK + "] ");
+//            String format = event.getFormat();
+//            event.setFormat(a + format);
+//            player.setMaxHealth(heal + 6);
+//        }
+//        if (rank.equals("超凡大师")) {
+//            String a = String.format(ChatColor.BLACK + "[" + "§b超§9凡§3大§e师" + ChatColor.BLACK + "] ");
+//            String format = event.getFormat();
+//            event.setFormat(a + format);
+//            player.setMaxHealth(heal + 8);
+//        }
+//        if (rank.equals("最强王者")) {
+//            String a = String.format(ChatColor.BLACK + "[" + "§4最§e强§d王§5者" + ChatColor.BLACK + "] ");
+//            String format = event.getFormat();
+//            event.setFormat(a + format);
+//            player.setMaxHealth(heal + 10);
+//        }
     }
 
     Map<String, Integer> map = new HashMap<String, Integer>();

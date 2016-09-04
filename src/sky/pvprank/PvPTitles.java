@@ -1,6 +1,7 @@
 package sky.pvprank;
 
 import org.bukkit.plugin.java.JavaPlugin;
+import sky.pvprank.api.PvpTitleApi;
 
 import java.util.logging.Logger;
 
@@ -12,6 +13,7 @@ public class PvPTitles extends JavaPlugin {
     private HandlePlayerPrefix handlePlayerPrefix;
     private LeaderBoardCommand ladder;
     private SWcommand swcommand;
+    private PvpTitleApi pvpTitleApi;
 
     public void onEnable() {
         this.log = getLogger();
@@ -21,6 +23,7 @@ public class PvPTitles extends JavaPlugin {
         this.handlePlayerPrefix = new HandlePlayerPrefix(this.databaseHandler, this.ranks, this);
         this.ladder = new LeaderBoardCommand(this);
         this.swcommand = new SWcommand(this.databaseHandler, this.ranks);
+        this.pvpTitleApi = new PvpTitleApi(this.databaseHandler , this.ranks);
         getServer().getPluginManager().registerEvents(handlePlayerPrefix, this);
         getCommand("rank").setExecutor(this.rankCommand);
         getCommand("ladder").setExecutor(this.ladder);
