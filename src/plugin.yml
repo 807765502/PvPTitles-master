@@ -1,0 +1,23 @@
+name: PvPTitles
+main: com.gmail.mikeundead.PvPTitles
+version: 1.2.9d
+softdepend: [Vault]
+commands:
+   rank:
+      description: Shows your current stats
+      usage: /rank
+   ladder:
+      description: Shows the top 5 players
+      usage: /ladder
+   sw:
+      description: Shows the top 5 players
+      usage: /ladder
+permissions:
+   pvptitles.rank:
+      description: Allows you to see rank
+   pvptitles.ladder:
+      description: Allows you to see the ladder
+   pvptitles.fame:
+      description: Allow you to use fame
+   pvptitles.sw:
+      description: Allow you to use fame
