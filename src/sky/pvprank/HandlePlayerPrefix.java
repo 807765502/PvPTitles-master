@@ -9,6 +9,7 @@ import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerLoginEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
+import sky.pvprank.api.PvpTitleApi;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -56,8 +57,9 @@ public class HandlePlayerPrefix implements Listener {
 
         for(String ranks : this.databaseHandler.HealthList().keySet()){
             if(rank.equalsIgnoreCase(ranks)){
-                int addHealth = this.databaseHandler.HealthList().get(rank);
-                player.setMaxHealth(player.getMaxHealth() + addHealth);
+                String a = PvpTitleApi.getPlayerPrefix(player);
+                String format = event.getFormat();
+                event.setFormat(a + format);
             }
         }
 //        if (rank.equals("英勇黄铜")) {
@@ -197,6 +199,8 @@ public class HandlePlayerPrefix implements Listener {
             if (!currentRank.equalsIgnoreCase(newRank)) {
                 player.sendMessage(ChatColor.GREEN + "恭喜你成功晋级为 " + newRank);
                 Bukkit.broadcastMessage(ChatColor.BLUE + "[军衔系统]" + ChatColor.AQUA + "恭喜" + player.getName() + "成功晋级为" + newRank + "," + ChatColor.DARK_BLUE + "他的血量也变得更多了");
+                int addHealth = this.databaseHandler.HealthList().get(newRank);
+                player.setMaxHealth(20 + addHealth);
             }
         }
     }
