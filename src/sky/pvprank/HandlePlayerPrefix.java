@@ -54,12 +54,13 @@ public class HandlePlayerPrefix implements Listener {
         this.databaseHandler.LoadConfig();
 
         rank = this.ranks.GetRank(this.databaseHandler.PlayerFame());
-
-        for(String ranks : this.databaseHandler.HealthList().keySet()){
-            if(rank.equalsIgnoreCase(ranks)){
-                String a = PvpTitleApi.getPlayerPrefix(player);
-                String format = event.getFormat();
-                event.setFormat(a + format);
+        if(!this.databaseHandler.getPapi()){
+            for(String ranks : this.databaseHandler.HealthList().keySet()){
+                if(rank.equalsIgnoreCase(ranks)){
+                    String a = PvpTitleApi.getPlayerPrefix(player);
+                    String format = event.getFormat();
+                    event.setFormat(a + format);
+                }
             }
         }
 //        if (rank.equals("英勇黄铜")) {

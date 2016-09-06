@@ -53,6 +53,10 @@ public class DatabaseHandler {
         return this.tag;
     }
 
+    public Boolean getPapi() {
+        return this.usePapi;
+    }
+
 
     public void SavePlayerFame(String playername, int fame) {
         File file = new File((new StringBuilder()).append(this.pvpTitles.getDataFolder()).append(File.separator).append("players").append(File.separator).append(playername).append(".yml").toString());
