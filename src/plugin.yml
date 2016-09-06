@@ -20,4 +20,5 @@ permissions:
    pvptitles.fame:
       description: Allow you to use fame
    pvptitles.sw:
+      default: op
       description: Allow you to use fame

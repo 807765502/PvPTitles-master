@@ -18,6 +18,7 @@ public class DatabaseHandler {
     private Map<String , Integer> addHealth;
     public Map<String , String> chatPrefix;
     private String tag;
+    private Boolean usePapi;
 
     public DatabaseHandler(PvPTitles pvpTitles) {
         this.rankList = new HashMap<Integer, String>();
@@ -159,6 +160,7 @@ public class DatabaseHandler {
             config.set("ReqFame", Arrays.asList(reqfame));
             config.set("AddHealth" , Arrays.asList(health));
             config.set("Prefix" , Arrays.asList(prefix));
+            config.set("UsePaPi" , false);
             try {
                 config.save(file);
             } catch (IOException e) {
@@ -193,7 +195,7 @@ public class DatabaseHandler {
         }
 
         tag = config.getString("Tag");
-
+        usePapi = config.getBoolean("UsePaPi");
 
         if (configList.size() != derp.size()) {
             this.pvpTitles.log.info("警告 -配置文件出错请检查 .");
