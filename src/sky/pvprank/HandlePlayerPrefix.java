@@ -9,6 +9,7 @@ import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerLoginEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
+import sky.pvprank.Event.RankTakeEvent;
 import sky.pvprank.api.PvpTitleApi;
 
 import java.util.HashMap;
@@ -110,6 +111,13 @@ public class HandlePlayerPrefix implements Listener {
     Map<String, Integer> map = new HashMap<String, Integer>();
 
     @EventHandler
+    public void rankTake(RankTakeEvent event){
+        Player player = event.getPlayer();
+        int addHealth = this.databaseHandler.HealthList().get(event.getRank());
+        player.setMaxHealth(20 + addHealth);
+    }
+
+    @EventHandler
     public void onKill(PlayerDeathEvent death) {
         int kills = 0;
 
@@ -142,6 +150,7 @@ public class HandlePlayerPrefix implements Listener {
             Player deathplayer = death.getEntity();
             this.databaseHandler.LoadPlayerFame(deathplayer.getName());
             int fame = this.databaseHandler.PlayerFame();
+            String oldRank = this.ranks.GetRank(fame);
             if (fame > 3000) {
                 fame = fame - 20;
                 deathplayer.sendMessage("§4[PVPrank]由于你死亡你的点数扣除20点.");
@@ -151,6 +160,10 @@ public class HandlePlayerPrefix implements Listener {
             }
             if (fame <= 0) {
                 deathplayer.sendMessage("§4[PVPrank]你的荣誉点已经不够了哦！.");
+            }
+            String newRank = this.ranks.GetRank(fame);
+            if(!oldRank.equals(newRank)){
+                Bukkit.getPluginManager().callEvent(new RankTakeEvent(deathplayer , newRank));
             }
             this.databaseHandler.SavePlayerFame(deathplayer.getName(), fame);
             this.databaseHandler.LoadPlayerFame(deathplayer.getName());
